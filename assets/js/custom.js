@@ -19,6 +19,7 @@
     }
   });
 
+  // change header background
   $(window).scroll(function() {
     var scroll = $(window).scrollTop();
     var box = $(".header-text").height();
@@ -67,7 +68,7 @@
         }
         $("html,body").animate(
           {
-            scrollTop: target.offset().top - 80
+            scrollTop: $(target).offset().top - 80
           },
           700
         );
@@ -89,19 +90,17 @@
       });
       $(this).addClass("active");
 
-      var target = this.hash,
-        menu = target;
-      var target = $(this.hash);
+      var target = this.hash;
       $("html, body")
-        .stop()
         .animate(
           {
-            scrollTop: target.offset().top - 79
+            scrollTop: $(target).offset().top - 80
           },
           500,
-          "swing",
+          // "swing",
           function() {
-            window.location.hash = target;
+            // window.location.hash = target;   // position of seciton not right, hence removed
+            history.pushState(null, document.title, target);
             $(document).on("scroll", onScroll);
           }
         );
